@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
+import RelatedProducts from './RelatedProducts';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -8,9 +9,10 @@ const ProductDetail = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
-  // Product data - in real app this would come from API
-  const product = {
-    id: 1,
+  // Prefer product passed via navigation state; fallback to demo data
+  const { state } = useLocation();
+  const product = state?.product ?? {
+    id: Number(id) || 1,
     name: "Cool ear-in headphones",
     price: 50,
     rating: 4,
@@ -18,11 +20,10 @@ const ProductDetail = () => {
     details: "Use these while working-out",
     images: [
       "https://cdn.sanity.io/images/ks2i9q1g/production/2dcd6804ac04c28574e5bf088348e9459121166e-800x800.webp",
-      "https://cdn.sanity.io/images/ks2i9q1g/production/18cffd876ecb5abec2d26637bea5dd549928029c-800x800.webp", // Same image for demo
-      "https://cdn.sanity.io/images/ks2i9q1g/production/e080e19ff807ee022d04d04db072d9376d94da36-600x600.webp", // Blue version
-      "https://cdn.sanity.io/images/ks2i9q1g/production/07fd4b12012f56f93ee9c5090a09754b4d8ee9dd-600x600.webp", // Same image
+      "https://cdn.sanity.io/images/ks2i9q1g/production/18cffd876ecb5abec2d26637bea5dd549928029c-800x800.webp",
+      "https://cdn.sanity.io/images/ks2i9q1g/production/e080e19ff807ee022d04d04db072d9376d94da36-600x600.webp",
+      "https://cdn.sanity.io/images/ks2i9q1g/production/07fd4b12012f56f93ee9c5090a09754b4d8ee9dd-600x600.webp",
     ],
-    colors: ['black', 'blue']
   };
 
   const handleQuantityChange = (change) => {
@@ -124,7 +125,7 @@ const ProductDetail = () => {
             </div>
 
             {/* Price */}
-            <div className="text-4xl font-bold text-red-600">
+            <div className="text-2xl font-bold text-red-600">
               ${product.price}
             </div>
 
@@ -168,6 +169,9 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Related Products Section */}
+      <RelatedProducts currentProductId={product.id} />
     </div>
   );
 };
