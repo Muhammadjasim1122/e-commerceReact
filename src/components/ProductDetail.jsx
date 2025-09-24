@@ -41,6 +41,7 @@ const ProductDetail = () => {
 
   const handleBuyNow = () => {
     addToCart(product, quantity);
+    
   };
 
   return (

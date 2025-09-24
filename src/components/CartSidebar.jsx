@@ -24,7 +24,7 @@ const CartSidebar = () => {
     <>
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-[500px] bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-0 right-0 h-full w-[500px] bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 flex flex-col ${
           isCartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -47,13 +47,13 @@ const CartSidebar = () => {
         </div>
 
         {/* Cart Items */}
-        <div className="flex-1 overflow-y-auto p-10">
+        <div className="flex-1 overflow-y-auto scrollbar-hide p-6">
           {cartItems.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-gray-500">Your cart is empty</p>
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-4 pb-4">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex items-start space-x-4">
                   {/* Product Image */}
@@ -106,7 +106,7 @@ const CartSidebar = () => {
 
         {/* Footer */}
         {cartItems.length > 0 && (
-          <div className="border-t border-gray-200 p-6">
+          <div className="border-t border-gray-200 p-6 bg-white flex-shrink-0">
             {/* Subtotal */}
             <div className="flex justify-between items-center mb-4">
               <span className="text-lg font-semibold text-gray-900 ">Subtotal:</span>
@@ -119,6 +119,7 @@ const CartSidebar = () => {
             </button>
           </div>
         )}
+        
       </div>
     </>
   );
