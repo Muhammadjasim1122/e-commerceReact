@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../contexts/CartContext';
 import RelatedProducts from './RelatedProducts';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart, getTotalItems, setIsCartOpen } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
@@ -34,27 +36,28 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    // Add to cart logic
-    console.log('Added to cart:', { product, quantity });
+    addToCart(product, quantity);
   };
 
   const handleBuyNow = () => {
-    // Buy now logic
-    console.log('Buy now:', { product, quantity });
+    addToCart(product, quantity);
   };
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="flex justify-between items-center px-8 py-4 bg-white">
-        <h1 className="text-gray-500 text-lg">Jasim's Headphones</h1>
-        <div className="relative">
-          <ShoppingCart className="w-6 h-6 text-gray-700" />
-          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-            0
-          </span>
-        </div>
-      </header>
+          <header className="flex justify-between items-center px-8 py-4 bg-white">
+            <h1 className="text-gray-500 text-lg">Jasim's Headphones</h1>
+            <button 
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <ShoppingCart className="w-6 h-6 text-gray-700" />
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {getTotalItems()}
+              </span>
+            </button>
+          </header>
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-8 py-6">
@@ -126,7 +129,7 @@ const ProductDetail = () => {
 
             {/* Price */}
             <div className="text-2xl font-bold text-red-600">
-              ${product.price}
+              {product.price}
             </div>
 
             {/* Quantity Selector */}

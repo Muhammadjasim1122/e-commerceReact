@@ -6,7 +6,7 @@ export default function BestSellingProducts() {
     {
       id: 1,
       name: "Cool ear-in headphones",
-      price: "50",
+      price: "$50",
       img: "https://cdn.sanity.io/images/ks2i9q1g/production/2dcd6804ac04c28574e5bf088348e9459121166e-800x800.webp",
       rating: 4,
       reviews: 20,
@@ -21,7 +21,7 @@ export default function BestSellingProducts() {
     {
       id: 2,
       name: "Headphones",
-      price: "55",
+      price: "$55",
       img: "https://cdn.sanity.io/images/ks2i9q1g/production/a099db30fab841ce69c573f7409251824748e490-600x600.webp",
       rating: 5,
       reviews: 18,
@@ -36,7 +36,7 @@ export default function BestSellingProducts() {
     {
       id: 3,
       name: "Speakers",
-      price: "99",
+      price: "$99",
       img: "https://cdn.sanity.io/images/ks2i9q1g/production/9c6162564225f2fd12c9abd439ce80e5df0986d4-800x800.webp",
       rating: 4,
       reviews: 32,
@@ -51,7 +51,7 @@ export default function BestSellingProducts() {
     {
       id: 4,
       name: "Headphones",
-      price: "99",
+      price: "$99",
       img: "https://cdn.sanity.io/images/ks2i9q1g/production/058225fc820fe15a1c63697367a905959a5f32a6-555x555.webp",
       rating: 3,
       reviews: 11,

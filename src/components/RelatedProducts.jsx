@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
 import Footer from './Footer';
 
 const RelatedProducts = ({ currentProductId }) => {
   const navigate = useNavigate();
+  const { addToCart, getTotalItems, setIsCartOpen } = useCart();
   // Related products data - in real app this would come from API
   const relatedProducts = [
     {
@@ -76,6 +78,10 @@ const RelatedProducts = ({ currentProductId }) => {
     setTimeout(() => {
       navigate(`/product/${product.id}`, { state: { product } });
     }, 300);
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart(product, 1);
   };
 
 
